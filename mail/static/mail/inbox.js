@@ -65,9 +65,24 @@ function send_email(event) {
   fetch(`/emails/${mailbox}`)
   .then(response => response.json())
   .then(emails => {
-      // Print emails
-      console.log(emails);
+      // Loop through email and create a div for each 
+      emails.forEach(singleEmail => {
 
-      // ... do something else with emails ...
+        console.log(singleEmail);
+
+        // Create  div for each email 
+        const newEmail = document.createElement('div');
+        newEmail.innerHTML = `
+        <h3>Sender: ${singleEmail.sender}</h3>
+        <h4>Subject: ${singleEmail.subject}</h4>
+        <p>${singleEmail.timestamp}</p>
+
+        
+        `;
+        newEmail.addEventListener('click', function() {
+           console.log('This newEmail has been clicked!')
+        });
+        document.querySelector('#emails-view').append(newEmail);
+      })
   });
 }
