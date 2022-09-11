@@ -48,13 +48,17 @@ function load_mailbox(mailbox) {
 
         // Create  div for each email 
         const newEmail = document.createElement('div');
-        newEmail.innerHTML = `
-        <h3>Sender: ${singleEmail.sender}</h3>
-        <h4>Subject: ${singleEmail.subject}</h4>
-        <p>${singleEmail.timestamp}</p>
-
+        newEmail.className = 'list-group-item';
         
+        newEmail.innerHTML = `
+        <h6>Sender: ${singleEmail.sender}</h3>
+        <h5>Subject: ${singleEmail.subject}</h4>
+        <p>${singleEmail.timestamp}</p>
         `;
+        // Change background-color
+        newEmail.className = singleEmail.read ? 'read': 'unread';
+
+        // Add click event to view email
         newEmail.addEventListener('click', function() {
           console.log('This newEmail has been clicked!')
         });
