@@ -45,5 +45,20 @@ function send_email(event) {
    const subject = document.querySelector('#compose-subject').value;
    const body = document.querySelector('#compose-body').value;
   
+   // Send date to backend
+  fetch('/emails', {
+    method: 'POST',
+    body: JSON.stringify({
+        recipients: recipient,
+        subject: subject,
+        body: body
+    })
+  })
+  .then(response => response.json())
+  .then(result => {
+      // Print result
+      console.log(result);
+      load_mailbox('sent');
+  });
    
 }
