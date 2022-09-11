@@ -39,7 +39,7 @@ function view_email(id) {
       document.querySelector('#email-detail-view').style.display = 'block';
 
 
-      // ... do something else with email ...
+      
       document.querySelector('#email-detail-view').innerHTML = `
       <ul class="list-group">
         <li class="list-group-item"><strong>From: </strong>${email.sender}</li>
@@ -50,7 +50,15 @@ function view_email(id) {
       </ul>
       `
       // Change to read
-      
+      if(!email.read){
+        fetch(`/emails/${email.id}`, {
+          method: 'PUT',
+          body: JSON.stringify({
+              read: true
+          })
+        })
+      }
+      // Archive/Unarchive
   });
 }
 
