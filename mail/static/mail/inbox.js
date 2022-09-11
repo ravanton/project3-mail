@@ -60,5 +60,14 @@ function send_email(event) {
       console.log(result);
       load_mailbox('sent');
   });
-   
+
+  //  Get the email for that mailbox and user
+  fetch(`/emails/${mailbox}`)
+  .then(response => response.json())
+  .then(emails => {
+      // Print emails
+      console.log(emails);
+
+      // ... do something else with emails ...
+  });
 }
